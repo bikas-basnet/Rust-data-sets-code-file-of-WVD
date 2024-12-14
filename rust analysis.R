@@ -1,5 +1,3 @@
-#oppen access code of my research paper:https://pdf.sciencedirectassets.com/313383/1-s2.0-S2405985423X0007X/1-s2.0-S2405985424000338/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEPr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIChleS70dOQblXaC%2Fnwnh09%2F4joDGAahouRRPnKt%2BkkvAiEAngS3WXJa6ldzzjIaxvHJ97uhNchiS9Fb05r55ca0E2wqvAUIs%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAFGgwwNTkwMDM1NDY4NjUiDEy2bZads2JFK6ch7yqQBcGx1RlZKLuGIQYK%2B6l7XQto3RVDLLnbyQR%2FzQZX%2BA38EFxSi5qdr6KwxK9y8XvzAd3H4XWESfNrsivrl1Mp4TmY%2Bi5n9TxiO%2BV72VHQaJq2ApkU0Jm5VlIHW5E5MUvqovqzsNcMJMwSC4eIbA95%2F0wZPY8PTAqRixn66t0usSCZN9Kx8GkfvVDtpMtEbP4X8j6ih9KEoxR%2BsOtFJ60B99HXevuki46LHQzIaKcPXOQQMdQ2CPrw8YnKEpyvl90Th1MyX0reMTDdOIrgO0AS2Nz3NE9DkdN1peIQHqOgEk6OJ7XiO%2Bc6O1EH6tz3bW7k1bVIHE0Th7LrWMimOmlLmi%2BodeOC3pV0X%2BFs2Kmqt91KQ2xXoXChXTcxM71xEO0Tq4VmtzLVRySw%2BwiJ%2B0RwlWBWws8pZUWhP3ky458VtoKgCwnb8%2BfOtLtPZeOtrahMg7%2FrWLyyfLyX%2BWDTllIakwT4a8KrX6CJiHNA%2F%2Fb7hRN97PNGBCmdSJRaxKAzQLs0JXDw54Qf%2F2Waqrz4Nc3DpOF8ztxzqWIFL5j6lw%2Bv9%2FZFTqRm%2BaZXqcdhJUp5dKFTJ4OUUympZoACyNP0aeTVBN9ywYkAFyA70DexnvUG2R8AAVeKQSB6viAkTd5DXPcixifxuqPXlN%2BM0UiCXuoPfU4ZWKtHFiq%2BYbZZUrSxk%2BipzVA1n5ky62Kog85Zd397TN3XXzSVRAZoOQNt5qSsPc4xHLvNYqjTVyZ%2BiHyKR9M46KDkvbcZj1xUYJ07jLE9TCAGDImCGnEYwL47WECFenrNZtZIei52a0vzEoZ%2B1RmGZSoDRB9%2BbPU2YXEXE44u8E1hhJ2rVVRrUS4HsemJsHrt8TnX9WB2e%2BPp4fYg7D8PMNn%2B6LoGOrEBBUny2dpmnau7pcP7bddegc47KnziaI64u4ZggIPCDOBrebV6aNJWA14VwJpgux%2BbX5ZpBeRsdtXo%2F7kaxF%2FVsN2xWVe%2FUnuS%2Bh2FmKSlyPkih%2Bmq0OY4%2FcvZn4tWC%2FdsRZNvbvElO8l22bsVYXgsiZ%2BCh6NaaE3rKdCSXh3yyuHMVDLtAGjvZO53l7T1kcv%2BmhZhwWcq1e6x88JuiXxizY1j%2FgAJ5zW9jfzbYiiglLU5&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241212T025323Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTY7JFXRKPA%2F20241212%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d06d336e050b47f7de1a5e943fafb311afd9078d5579cff9ed46146778f21faa&hash=90ec3e3dc1b23d6a30d4370c52d82640bfdc85a52a572567f7edecd88ec07980&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S2405985424000338&tid=spdf-79a30912-4852-43f1-bde4-919482b51b3b&sid=1be0dcaf8eb04149e38be1f-d2c002f199e5gxrqa&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=0c165c015707590452&rr=8f0a6c7c89b07f5a&cc=np
-
 Bikas<-read.csv("E:/suk B gurung sir folder/FAD.csv", header = TRUE)
 Bikas
 colnames(Bikas)
@@ -8,10 +6,44 @@ library(dplyr)
 head(Bikas)
 str(Bikas)
 Bikas$FRS <- as.numeric(Bikas$FRS)
-Bikas$HS <- as.factor(Bikas$HS)
-Bikas$Name.of.the.released.Variety.of.the.wheat <- factor(Bikas$Name.of.the.released.Variety.of.the.wheat, 
-                                                          levels = Bikas$Name.of.the.released.Variety.of.the.wheat)
-####################to create the plot 
+Bikas$Variety<-as.factor(Bikas$Variety)
+colnames(Bikas)
+############Path analyis code
+# Example of PCA with AUDPC and other continuous variables
+
+library(lavaan)
+library(semPlot)
+
+mod <- '
+  overall_resistance =~ r.value + ACI + FRS + SCI + AUDPC + Height.of.the.Plant + Length.of.the.Spike + mean.of.spiklet.number
+  Yield.ha ~ overall_resistance
+'
+Bikas_scaled <- Bikas
+Bikas_scaled[, c("r.value", "ACI", "FRS", "SCI", "AUDPC", "Height.of.the.Plant", "Length.of.the.Spike", "mean.of.spiklet.number", "Yield.ha")] <- 
+  scale(Bikas[, c("r.value", "ACI", "FRS", "SCI", "AUDPC", "Height.of.the.Plant", "Length.of.the.Spike", "mean.of.spiklet.number", "Yield.ha")])
+?semPaths
+getwd()
+fit_scaled <- sem(mod, data = Bikas_scaled)
+fit_scaled
+summary(fit_scaled, fit.measures = TRUE)
+parameterEstimates(fit_scaled, standardized = TRUE)
+semPaths(fit_scaled)
+semPaths(fit_scaled, 
+         whatLabels = "est.std", 
+         layout = "circle2", 
+         rotation = 1, 
+         curvePivot = TRUE, 
+         edge.label.cex = 0.9, 
+         edge.width = 2, 
+         label.cex = 1.8, 
+         nCharNodes = 10, 
+         legend = TRUE, 
+         legend.cex = 1.5,
+         edge.color = "darkgreen",
+         label.color = 9,
+         border.color = 2,
+         asize = 1.5)
+##################################
 Bikubarplot<-ggplot(Bikas, aes(x = Name.of.the.released.Variety.of.the.wheat, y = FRS, fill = HS)) +
   geom_bar(stat = "identity", width = 1) +  
   coord_polar(start = 0) +  
@@ -24,11 +56,11 @@ Bikubarplot<-ggplot(Bikas, aes(x = Name.of.the.released.Variety.of.the.wheat, y 
   geom_text(aes(label = round(FRS, 1)), color = "black", size = 3, position = position_stack(vjust = 0.5))
 Bikubarplot
 ###3To add the bar diagram in vertical bar plot in order 
-Bar <- ggplot(Bikas, aes(x = reorder(Name.of.the.released.Variety.of.the.wheat, FRS), y = FRS, fill = HS)) +   
-  geom_bar(stat = "identity", width = 0.7) +  # Bar plot with FRS as heights
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 9),  # Rotate and size the x-axis labels
-        axis.title.x = element_blank(),  # Remove the x-axis title
-        legend.position = "bottom") +  # Position the legend at the bottom
+Bar<-ggplot(Bikas, aes(x = reorder(Name.of.the.released.Variety.of.the.wheat, FRS), y = FRS, fill = HS)) +   
+  geom_bar(stat = "identity", width = 0.7) +  
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 9),  
+        axis.title.x = element_blank(),  
+        legend.position = "bottom") +  
   labs(title = "FRS by Wheat Genotype") +   
   scale_fill_manual(values = c("R" = "green", "MR" = "brown", "M" = "blue", "MS" = "darkgreen", "S" = "red")) +  
   geom_text(aes(label = round(FRS, 1)), color = "black", size = 3.5, position = position_stack(vjust = 0.5)) + 
@@ -36,15 +68,12 @@ Bar <- ggplot(Bikas, aes(x = reorder(Name.of.the.released.Variety.of.the.wheat, 
   scale_x_discrete(
     aes(x = reorder(Name.of.the.released.Variety.of.the.wheat, FRS))  # Reorder x-axis by FRS within each facet
   )
-
-
-
-
 Bar
 ggsave("vertical bar plot arranged type for each.jpg", plot = Bar, dpi = 600, width = 15, height = 12)
 getwd()
-####################
-# Reorder the genotypes based on ascending FRS values
+
+###################################################################
+###### Reorder the genotypes based on ascending FRS values
 Bikas$Name.of.the.released.Variety.of.the.wheat <- 
   factor(Bikas$Name.of.the.released.Variety.of.the.wheat, 
          levels = Bikas$Name.of.the.released.Variety.of.the.wheat[order(Bikas$FRS)])
@@ -90,27 +119,43 @@ Bikas$Name.of.the.released.Variety.of.the.wheat <-
          levels = Bikas$Name.of.the.released.Variety.of.the.wheat[order(Bikas$r.value)])
 
 # Create the plot
-Rvalue <- ggplot(Bikas, aes(x = Name.of.the.released.Variety.of.the.wheat, y = r.value, fill = r.value)) +
-  geom_bar(stat = "identity", width = 0.8) +  # Thicker bars
-  coord_polar(start = 0, clip = "off") +  # Polar coordinates
-  theme_void() +  # Remove axes
+library(ggplot2)
+
+Bikas$r.value <- as.numeric(Bikas$r.value)
+Bikas$r.value
+
+Rvalue <- ggplot(Bikas, aes(x = Name.of.the.released.Variety.of.the.wheat, y = r.value)) + 
+  geom_segment(aes(x = Name.of.the.released.Variety.of.the.wheat, 
+                   xend = Name.of.the.released.Variety.of.the.wheat, 
+                   y = 0, yend = r.value), 
+               color = "darkgreen", size = 1) +  # Color of the stick (lollipop line)
+  
+  geom_point(aes(color = "brown"), size = 4) +  # Color of the head (lollipop top)
+  
+  coord_polar(start = 0, clip = "off") +  
+  theme_void() +  
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 6),  # Rotate x-axis labels
-    axis.title.x = element_blank(),  # Remove x-axis title
-    legend.position = "none",  # Remove legend
-    panel.grid = element_line(color = "grey", linewidth = 0.5),  # Add circular gridlines
-    panel.grid.major = element_line(color = "grey", linewidth = 0.5),  # Major circular gridlines
-    panel.grid.minor = element_line(color = "lightgrey", linewidth = 0.3)  # Minor circular gridlines
-  ) +
-  labs(title = "r.value across Genotypes") +
-  geom_text(aes(label = round(as.numeric(r.value), 1)), position = position_stack(vjust = 0.5), size = 2)  # Display r.value
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 6),  
+    axis.title.x = element_blank(),  
+    legend.position = "none",  
+    panel.grid = element_line(color = "grey", linewidth = 0.5),  
+    panel.grid.major = element_line(color = "grey", linewidth = 0.5),  
+    panel.grid.minor = element_line(color = "lightgrey", linewidth = 0.3)  
+  ) +  
+  labs(title = "r.value across Genotypes") + 
+  geom_text(aes(label = format(r.value, nsmall = 2)), 
+            position = position_nudge(y = 0.1), size = 3, color = "black")
 
 Rvalue
+
+
+
 
 getwd()
 library(gridExtra)
 combined_plot <- grid.arrange(aciplot, Rvalue, ncol = 2)
 ggsave("combine plot of ACI and R value.jpg", plot = combined_plot, dpi = 600, width = 15, height = 12)
+
 head(Bikas)
 ####To create the heat map based on AUDPC   FRS HS SCI, ACI r.value
 # Load necessary libraries
@@ -138,7 +183,7 @@ PM<-pheatmap(Bikas_scaled,                  # Scaled data with genotypes as row 
          fontsize = 8,                  # Font size for text in the plot
          color = colorRampPalette(c("darkgreen","brown", "orange", "lightgreen", "blue", "red"))(100),  # Blue to red color scale
          main = "ACI, r.value, AUDPC, FRS, SCI, Yield.ha",  # Title
-         show_rownames = TRUE,           # Show row names (genotypes)
+         show_rownames = TRUE,           
          show_colnames = TRUE,           # Show column names (variables)
          border_color = "grey")         # White border color for tiles
 PM
@@ -277,21 +322,49 @@ SN<- ggplot(data = Bikas, aes(x = reorder(factor(Name.of.the.released.Variety.of
                               fill = Name.of.the.released.Variety.of.the.wheat)) +
   geom_bar(stat = "identity") +
   geom_errorbar(aes(ymin = mean.of.spiklet.number - errors, ymax = mean.of.spiklet.number + errors), width = 0.2) +
-  scale_fill_manual(values = my_colors) +  # Apply the custom colors to the bars
+  scale_fill_manual(values = my_colors) +  
   theme_minimal() +
   theme(legend.position = "none",
-        axis.text.x = element_text(angle = 43, hjust = 1, size = 4)) +  # Rotate x-axis labels by 45 degrees
+        axis.text.x = element_text(angle = 43, hjust = 1, size = 4)) +  
   coord_polar(start = 0) +
   ylim(0, 12) +
-  geom_text(aes(label = round(mean.of.spiklet.number, 2)),    # Add text labels
-            position = position_stack(vjust = 0.5),   # Position at the center of the bar
-            color = "black",   # Set text color to white (or any contrasting color)
-            size = 2)          # Adjust text size as needed
+  geom_text(aes(label = round(mean.of.spiklet.number, 2)),    
+            position = position_stack(vjust = 0.5),   
+            color = "black",   
+            size = 2)          
 
 plot(SN)
 library(gridExtra)
 ?grid.arrange
-TCP<-grid.arrange(Ht, SL, SN, ncol = 3)
+TCP<-grid.arrange(Ht, SL, SN,gg,  ncol = 2)
+TCP
 getwd()
-ggsave("ht,length and numberspikelet.jpg", plot= TCP, dpi = 600, width = 15, height = 12)
-##############correlation study of the vegetative traits 
+ggsave("ht,length and numberspikelet, yieldha.jpg", plot= TCP, dpi = 600, width = 15, height = 12)
+##############yield comparisons using integrated box and violion plot
+#between same HS level 
+colnames(Bikas)
+head(Bikas)
+summary(Bikas)
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# Assuming 'Bikas' is your data frame
+# Filter the data for varieties with "M"
+m_data <- Bikas %>% filter(HS == "M")
+summary(m_data) 
+###
+LP<-ggplot(m_data, aes(x = Name.of.the.released.Variety.of.the.wheat, y = Yield.ha)) + 
+  geom_segment(aes(xend = Name.of.the.released.Variety.of.the.wheat, yend = 0), color = "#88BB44", size = 5) +  # Line part
+  geom_point(size = 25, color = "#E8A400") +  # Dot at the top
+  labs(x = "Moderate-Host Suceptible varieties", 
+       y = "Yield/ha") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 2),  # Rotate x-axis labels for readability
+        axis.text.y = element_text(size = 5),  # Adjust y-axis text size
+        axis.ticks.x = element_blank(),  # Optional: Remove x-axis ticks
+        plot.title = element_text(size = 16),  # Larger title for better readability
+        axis.title = element_text(size = 12))  # Larger axis titles
+LP
+getwd()
+ggsave("lpyield efficeincy compare plot.jpg", dpi = 600, width = 12, height = 12)
